@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+# run all commands as a user
 
 # Pull the images first, so kubeadm can build the containers more efficiently
 sudo docker pull k8s.gcr.io/kube-scheduler-amd64:v1.10.1

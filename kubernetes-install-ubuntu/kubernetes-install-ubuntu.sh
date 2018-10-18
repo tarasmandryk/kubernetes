@@ -1,14 +1,14 @@
 #!/bin/bash
 
 set -e
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 sudo apt-get update
-
-sudo apt install -y docker.io
 
 sudo -i
 
-cat << EOF > /etc/apt/sources.list.d/kubernetes.list
+sudo apt install -y docker.io
+
+cat << EOF > /etc/docker/deamon.json
 > {
 >  "exec-opts": ["native.cgroupdriver=systemd"]
 > }
