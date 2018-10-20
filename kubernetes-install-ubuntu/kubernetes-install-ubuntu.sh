@@ -4,17 +4,13 @@ set -e
 sudo apt-get upgrade -y
 sudo apt-get update -y
 
-sudo -i
-
 sudo apt install -y docker.io
 
-cat << EOF > /etc/docker/deamon.json
-> {
->  "exec-opts": ["native.cgroupdriver=systemd"]
-> }
-> EOF
+sudo echo "{" > /etc/docker/deamon.json
+sudo echo ' "exec-opts": ["native.cgroupdriver=systemd"]' >> /etc/docker/deamon.json
+sudo echo "}" >> /etc/docker/deamon.json
 
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list
-apt-get update -y
-apt-get install kubelet kubeadm kubectl -y
+sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update -y
+sudo apt-get install kubelet kubeadm kubectl -y
